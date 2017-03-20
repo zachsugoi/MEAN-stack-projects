@@ -1,0 +1,23 @@
+#labels{
+  display: inline-block;
+  margin: 2px;
+}
+#labels *, #inputs *{
+  display: block;
+}
+#inputs{
+  display: inline-block;
+}
+label{
+  display: block;
+  margin: 2px 0px;
+}
+input{
+  margin: 2px 0px;
+}
+select{
+  margin: 2px 0px;
+}
+input[type='submit']{
+  display: block;
+}
