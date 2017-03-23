@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Board</title>
+  </head>
+  <body>
+    <div id='top'>
+      <h1>The Dojo Message Board</h1>
+    </div>
+    <form action='/message' method='post'>
+      <label>Name:
+        <input type='text' name='name'>
+      </label>
+      <label>Message:
+        <textarea name='message' cols=40 rows=5></textarea>
+      </label>
+      <input id='message' type='submit' value='Post message'>
+    </form>
+    <% if(typeof(errors) != 'undefined'){ %>
+      <% for(var i in errors){ %>
+        <h3><%= errors[i].message %></h3>
+      <% } %>
+    <% } else{ %>
+      <div>
+        <% for(i in messages){ %>
+          <div>
+            <h3>Name: <%= messages[i].name %></h3>
+            <h3>Message: <%= messages[i].message %></h3>
+            <% for(x in messages[i]._comments){ %>
+              <h5>Name: <%= messages[i]._comments[x].name %></h5>
+              <h5>Comment: <%= messages[i]._comments[x].comment %></h5>
+            <% } %>
+
+            <form action='/comment/<%= messages[i]._id %>' method='post'>
+              <p class='margin'>Name:</p> <input class='comment_input' type='text' name='name'>
+              <p class='margin'>Comment:</p> <textarea class='comment_text' name='comment'></textarea>
+              <input class='post2' type='submit' value='Post comment'>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </body>
+</html>
+
+<style type='text/css'>
+  *{
+    font-family: geneva;
+  }
+  #top{
+    border-bottom: 1px solid black;
+    width: 90%;
+  }
+  input, textarea{
+    display: block;
+    margin-bottom: 2em;
+  }
+  textarea{
+    width: 60%;
+    height: 10em;
+  }
+  h5, .comment_input{
+    margin-left: 12%;
+  }
+  #post{
+    color: white;
+    background-color: blue;
+    margin-left: 36.7%;
+    width: 15em;
+    height: 3em;
+  }
+  .comment_text{
+    width: 40%;
+    height: 6em;
+    margin-left: 12%;
+  }
+  .margin{
+    margin-left: 12%;
+    margin-bottom: -.1em;
+  }
+  .post2{
+    color: white;
+    background-color: green;
+    margin-left: 33.2%;
+    width: 12em;
+    height: 2.5em;
+  }
+</style>
